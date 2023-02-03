@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "test_storage_table_api": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7212",
+      "launchBrowser": false
+    }
+  }
+}
