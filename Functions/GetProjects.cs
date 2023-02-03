@@ -13,9 +13,9 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 
 namespace MyFunctionApp
 {
-    public static class GetDataFromTableStorage
+    public static class GetProjects
     {
-        [FunctionName("GetDataFromTableStorage")]
+        [FunctionName("GetProjects")]
         public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]
             Microsoft.AspNetCore.Http.HttpRequest req)
@@ -40,14 +40,8 @@ namespace MyFunctionApp
                     ent => ent.PartitionKey == config["STORAGE_PROJECT_PARTITION"]
                 );
 
-            Pageable<TableEntity> experienceTableResults = tableClient
-                .Query<TableEntity>(
-                    ent => ent.PartitionKey == config["STORAGE_EXPERIENCE_PARTITION"]
-                );
-
             //Create Variables for Projects
             List<Project> projectResult = new List<Project>();
-            List<Experience> experienceResult = new List<Experience>();
             int rowKey = -1;
 
             //Iterate over Table and assign parameters for Projects
@@ -73,34 +67,11 @@ namespace MyFunctionApp
                 ));
             }
 
-            foreach (TableEntity qExperienceEntity in experienceTableResults)
-            {
-                //Converting string RowKey to int
-                try{
-                    rowKey = Int32.Parse(qExperienceEntity.GetString("RowKey"));
-                } catch (Exception e) {
-                    Console.WriteLine(e);
-                    return new BadRequestObjectResult("Error Converting RowKey (string) to RowKey (int)");
-                }
-
-                //Create new Experience objects
-                experienceResult.Add(new Experience(
-                    rowKey, 
-                    qExperienceEntity.GetString("Name"),
-                    qExperienceEntity.GetString("ImageURL"),
-                    qExperienceEntity.GetString("Institution"),
-                    qExperienceEntity.GetString("Description"),
-                    qExperienceEntity.GetString("StartDate"),
-                    qExperienceEntity.GetString("EndDate")
-                ));
-            }
-
             // Serialize the results to a JSON string
             string jsonProj = JsonConvert.SerializeObject(projectResult.OrderBy(ent => ent.RowKey).ToList());
-            string jsonExp = JsonConvert.SerializeObject(experienceResult.OrderBy(ent => ent.RowKey).ToList());
 
             // Return the JSON string as the response
-            return new OkObjectResult(jsonProj + "\n" +jsonExp);
+            return new OkObjectResult(jsonProj);
         }
     }
 }
