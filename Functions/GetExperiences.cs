@@ -12,34 +12,34 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 
 namespace MyFunctionApp
 {
-    public class GetProjects
+    public class GetExperiences
     {
         private readonly IDataService _dataService;
 
-        public GetProjects(
+        public GetExperiences(
             IDataService dataService) 
         {
             _dataService = dataService;
         }
 
-        [FunctionName("projects")]
+        [FunctionName("experiences")]
         public IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]
             Microsoft.AspNetCore.Http.HttpRequest req)
         {
-            Pageable<TableEntity> tableResults = _dataService.GetProjects();
-            List<Project> result = new List<Project>();
+            Pageable<TableEntity> tableResults = _dataService.GetExperiences();
+            List<Experience> result = new List<Experience>();
 
-            foreach (TableEntity qProjectEntity in tableResults)
+            foreach (TableEntity qEntity in tableResults)
             {
-                result.Add(new Project(
-                    Int32.Parse(qProjectEntity.GetString("RowKey")), 
-                    qProjectEntity.GetString("Name"),
-                    qProjectEntity.GetString("ImageURL"),
-                    qProjectEntity.GetString("Description"),
-                    qProjectEntity.GetString("Repository"),
-                    qProjectEntity.GetString("Skills").Split(','), 
-                    qProjectEntity.GetString("Tags").Split(',')
+                result.Add(new Experience(
+                    Int32.Parse(qEntity.GetString("RowKey")), 
+                    qEntity.GetString("Name"),
+                    qEntity.GetString("ImageURL"),
+                    qEntity.GetString("Institution"),
+                    qEntity.GetString("Description"),
+                    qEntity.GetString("StartDate"),
+                    qEntity.GetString("EndDate")
                 ));
             }
 
