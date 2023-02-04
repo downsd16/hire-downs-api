@@ -10,11 +10,9 @@ namespace Company.Function.Services
         private readonly IConfiguration _configuration;
 
         public DataService(
-            TableClient tableClient,
-            IConfiguration configuration)
+            TableClient tableClient)
         {
             _tableClient = tableClient;
-            _configuration = configuration;
         }
         public Pageable<TableEntity> GetProjects()
         {
