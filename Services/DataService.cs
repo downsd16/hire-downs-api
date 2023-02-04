@@ -19,19 +19,19 @@ namespace Company.Function.Services
         public Pageable<TableEntity> GetProjects()
         {
             return  _tableClient.Query<TableEntity>(
-                ent => ent.PartitionKey == _configuration["STORAGE_PROJECT_PARTITION"]
+                ent => ent.PartitionKey == System.Environment.GetEnvironmentVariable("STORAGE_PROJECT_PARTITION")
             );
         }
         public Pageable<TableEntity> GetEducations()
         {
             return  _tableClient.Query<TableEntity>(
-                ent => ent.PartitionKey == _configuration["STORAGE_EDUCATION_PARTITION"]
+                ent => ent.PartitionKey == System.Environment.GetEnvironmentVariable("STORAGE_EDUCATION_PARTITION")
             );
         }
         public Pageable<TableEntity> GetExperiences()
         {
             return  _tableClient.Query<TableEntity>(
-                ent => ent.PartitionKey == _configuration["STORAGE_EXPERIENCE_PARTITION"]
+                ent => ent.PartitionKey == System.Environment.GetEnvironmentVariable("STORAGE_EXPERIENCE_PARTITION")
             );
         }
     }
