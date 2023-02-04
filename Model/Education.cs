@@ -2,7 +2,7 @@ namespace Company.Function.Model
 {
     public class Education
     {
-        //Experience Parameters
+        //Education Parameters
         public int RowKey { get; }
         public string Name { get; }
         public string ImageHREF { get; }
@@ -10,7 +10,7 @@ namespace Company.Function.Model
         public string StartDate { get; }
         public string EndDate { get; }
 
-        //Experience Constructor
+        //Education Constructor
         public Education(
             int rowKey,
             string name,
