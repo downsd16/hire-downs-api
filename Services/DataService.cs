@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Configuration;
 using Azure.Data.Tables;
 using Azure;
 
@@ -7,7 +6,6 @@ namespace Company.Function.Services
     public class DataService : IDataService
     {
         private readonly TableClient _tableClient;
-        private readonly IConfiguration _configuration;
 
         public DataService(
             TableClient tableClient)
