@@ -24,7 +24,7 @@ namespace MyFunctionApp
 
         [FunctionName("experiences")]
         public IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)]
             Microsoft.AspNetCore.Http.HttpRequest req)
         {
             Pageable<TableEntity> tableResults = _dataService.GetExperiences();
