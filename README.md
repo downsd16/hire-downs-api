@@ -29,9 +29,12 @@
 
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-This project uses Azure Functions to create a shared TableClient instance for querying an Azure Storage Table using the Azure.Data.Table package in C#. 
+![proejct diagram](https://github.com/downsd16/hire-downs-api/blob/main/assets/diagram.JPG?raw=true)
+
+This project uses Azure Functions to create a shared TableClient instance for querying an Azure Storage Table using the Azure.Data.Table package in C#.
 
 Features:
 <ul>
