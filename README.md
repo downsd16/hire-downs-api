@@ -1,9 +1,8 @@
 <a name="readme-top"></a>
 
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <h3 align="center">Hire-Downs.dev Content API</h3>
+  <h1 align="center">Hire-Downs.dev Content API</h1>
 
   <p align="center">
     A simple API built for my <a href="https://hire-downs.dev"><strong>personal portfolio</strong></a> for content loading and updating.
