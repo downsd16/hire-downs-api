@@ -30,5 +30,9 @@ namespace Company.Function.Services
                 ent => ent.PartitionKey == System.Environment.GetEnvironmentVariable("STORAGE_EXPERIENCE_PARTITION")
             );
         }
+        public TableClient GetTableClient()
+        {
+            return  _tableClient;
+        }
     }
 }
