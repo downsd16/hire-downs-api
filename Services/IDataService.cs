@@ -28,5 +28,13 @@ namespace Company.Function.Services
         /// List of type Experience
         /// </returns>
         Pageable<TableEntity> GetExperiences();
+
+        /// <summary>
+        /// Enables content uploads
+        /// </summary>
+        /// <returns>
+        /// TableEntity 
+        /// </returns>
+        TableClient GetTableClient();
     }
 }
